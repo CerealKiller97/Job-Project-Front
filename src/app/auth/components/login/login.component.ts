@@ -10,6 +10,7 @@ import {
 import { AuthService } from "src/app/shared/services/auth.service";
 import { IGetRole } from "src/app/shared/services/roles.service";
 import {Title} from "@angular/platform-browser";
+import * as M from "materialize-css/dist/js/materialize";
 
 @Component({
   selector: "app-login",
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", [
       Validators.required,
-      Validators.minLength(6)
+      Validators.minLength(8),
+      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$')
     ])
   });
 
@@ -52,6 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           },
           (error: HttpErrorResponse) => {
             this.error = error.error.message;
+            M.toast({ html: this.error, classes: "error" });
           }
         )
       );

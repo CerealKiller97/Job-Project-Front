@@ -2,6 +2,7 @@
 
 :root {
   --primary: #00b8d4;
+  --error: #b71c1c;
 }
 
 body {
@@ -21,4 +22,8 @@ input[type=text]:not(.browser-default).validate+label {
 
 input[type=text]:not(.browser-default):focus:not([readonly]) {
   //border-bottom: var(--primary) !important;
+}
+
+.error {
+  background-color: var(--error) !important;
 }
