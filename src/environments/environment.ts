@@ -6,7 +6,7 @@ import { IEnvironment } from "./environment.interface";
 
 export const environment: IEnvironment = {
   production: false,
-  apiUrl: ""
+  apiUrl: "http://localhost/job-project/public/index.php/api"
 };
 
 /*

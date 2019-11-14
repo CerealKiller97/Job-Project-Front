@@ -8,6 +8,7 @@ import { HeaderInterceptorService } from "./interceptors/header-interceptor.serv
 @NgModule({
   declarations: [],
   imports: [CommonModule, HttpClientModule, ReactiveFormsModule, FormsModule],
+  exports: [HttpClientModule],
   providers: [
     {
       multi: true,

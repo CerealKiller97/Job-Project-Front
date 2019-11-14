@@ -2,7 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Observable } from "rxjs";
-import { LoginCredentials, LoginResponse } from "../models/User.model";
+import {
+  IRegisterUser,
+  LoginCredentials,
+  LoginResponse
+} from "../models/User.model";
 
 @Injectable({
   providedIn: "root"
@@ -20,6 +24,10 @@ export class AuthService {
     const jwtService: JwtHelperService = new JwtHelperService();
 
     return !jwtService.isTokenExpired(token);
+  }
+
+  public register(register: IRegisterUser): Observable<string> {
+    return this.http.post<string>("/auth/register", register);
   }
 
   public login(login: LoginCredentials): Observable<LoginResponse> {

@@ -13,6 +13,11 @@ const routes: Routes = [
       import("./dashboard/dashboard.module").then(m => m.DashboardModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard]
+  },
+  {
+    path: "",
+    redirectTo: "auth/login",
+    pathMatch: "full"
   }
 ];
 

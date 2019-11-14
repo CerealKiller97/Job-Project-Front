@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Route, RouterModule } from "@angular/router";
 import { AuthLayoutComponent } from "./components/auth-layout/auth-layout.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -26,6 +27,11 @@ const routes: Route[] = [
     LoginComponent,
     RegisterComponent
   ],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule
+  ]
 })
 export class AuthModule {}
