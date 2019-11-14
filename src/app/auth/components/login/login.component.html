@@ -1,3 +1,7 @@
+<ng-template ngIf="error !== null">
+  {{ error }}
+</ng-template>
+
 <form [formGroup]="loginForm" (ngSubmit)="login()">
   <input type="text" formControlName="email" />
   <input type="text" formControlName="password" />

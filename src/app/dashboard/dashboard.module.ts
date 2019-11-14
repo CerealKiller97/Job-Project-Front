@@ -12,7 +12,7 @@ const routes: Route[] = [
     path: "",
     component: DashboardLayoutComponent,
     children: [
-      { path: "", component: DashboardComponent },
+      { path: "dashboard", component: DashboardComponent },
       { path: "create-job", component: PostJobComponent },
       { path: "jobs", component: JobListComponent }
     ],

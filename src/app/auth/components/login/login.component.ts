@@ -18,6 +18,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Array<Subscription> = [];
+  public error: string = null;
 
   public readonly loginForm: FormGroup = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
@@ -47,10 +48,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           (res: LoginResponse) => {
             localStorage.setItem('token', res.token);
             localStorage.setItem('user', JSON.stringify(res.user));
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
           },
           (error: HttpErrorResponse) => {
-            console.log(error);
+            this.error = error.error.message;
           }
         )
       );
