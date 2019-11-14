@@ -8,7 +8,7 @@ import {
   LoginResponse
 } from "src/app/shared/models/User.model";
 import { AuthService } from "src/app/shared/services/auth.service";
-import { IGetRole, RolesService } from "src/app/shared/services/roles.service";
+import { IGetRole } from "src/app/shared/services/roles.service";
 
 @Component({
   selector: "app-login",
@@ -30,22 +30,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly rolesService: RolesService,
     private readonly router: Router
   ) {}
 
-  public ngOnInit() {
-    this.subscriptions.push(
-      this.rolesService.getRoles().subscribe(
-        (roles: IGetRole[]) => {
-          console.log(roles);
-        },
-        (error: HttpErrorResponse) => {
-          console.error(error);
-        }
-      )
-    );
-  }
+  public ngOnInit() {}
 
   public login() {
     if (this.loginForm.valid) {
