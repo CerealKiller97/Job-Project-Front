@@ -23,7 +23,7 @@ export class LoginRedirectGuard implements CanActivate {
       this.router.navigate(['/dashboard']);
       return false;
     }
-    console.log('not logged in');
+
     return true;
   }
 

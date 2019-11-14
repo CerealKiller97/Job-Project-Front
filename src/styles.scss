@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary: #00b8d4;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif !important;
+  display: flex !important;
+  min-height: 100vh !important;
+  flex-direction: column !important;
+}
+
+main {
+  flex: 1 0 auto !important;
+}
+
+input[type=text]:not(.browser-default).validate+label {
+  //color: var(--primary) !important;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+  //border-bottom: var(--primary) !important;
+}
