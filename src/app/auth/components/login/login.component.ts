@@ -20,13 +20,14 @@ import * as M from "materialize-css/dist/js/materialize";
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Array<Subscription> = [];
   public error: string = null;
+  public showSpinner: boolean = false;
 
   public readonly loginForm: FormGroup = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", [
       Validators.required,
-      Validators.minLength(8),
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$')
+      Validators.minLength(8)
+      // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$')
     ])
   });
 
@@ -48,9 +49,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.subscriptions.push(
         this.authService.login(credentials).subscribe(
           (res: LoginResponse) => {
+            this.showSpinner = true;
             localStorage.setItem('token', res.token);
             localStorage.setItem('user', JSON.stringify(res.user));
-            this.router.navigate(['/dashboard']);
+
+            M.toast({ html: "Welcome back " + res.user.name, displayLength: 1750 });
+
+            setTimeout(() => {
+              this.router.navigateByUrl('/dashboard');
+            }, 2500)
           },
           (error: HttpErrorResponse) => {
             this.error = error.error.message;

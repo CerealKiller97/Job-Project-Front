@@ -7,6 +7,10 @@ import { IRegisterUser } from "src/app/shared/models/User.model";
 import { AuthService } from "src/app/shared/services/auth.service";
 import { IGetRole, RolesService } from "src/app/shared/services/roles.service";
 import {Title} from "@angular/platform-browser";
+import * as M from 'materialize-css/dist/js/materialize';
+
+
+
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -24,7 +28,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       Validators.minLength(8),
       Validators.pattern("/^(?=.*[a-z])(?=.*[A-Z])(?=.*d).{8,}$/")
     ]),
-    password_confirmation: new FormControl("", [Validators.required]),
     role_id: new FormControl("", [Validators.required])
   });
 
@@ -37,6 +40,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.roles = this.route.snapshot.data['roles'];
+    console.log(this.roles);
+    var elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems, this.roles);
     this.titleService.setTitle('Softwarehaus | Register');
   }
 

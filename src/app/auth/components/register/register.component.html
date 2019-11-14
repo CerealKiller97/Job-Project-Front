@@ -1,12 +1,39 @@
-<form [formGroup]="registerForm" (ngSubmit)="(register)">
-  Name: <input type="text" formControlName="name" /> <br />
-  Email: <input type="text" formControlName="email" /> <br />
-  Password: <input type="password" formControlName="password" /> <br />
-  Confirm password: <input type="password" formControlName="password_confirmation" /> <br />
-  Role:
-  <select formControlName="role_id">
-    <option *ngFor="let role of roles" value="{{ role.id }}">{{ role.name }}</option>
-  </select>
-  <br />
-  <button [disabled]="!registerForm.valid" type="submit">Register</button>
+<h6 class="center-align">Register</h6>
+
+<form class="col s12" [formGroup]="registerForm" (ngSubmit)="(register)">
+
+
+  <div class="row">
+    <div class="input-field col s12">
+      <input formControlName="name" id="name" type="text" class="validate">
+      <label for="name">Name</label>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input formControlName="email" id="email" type="text" class="validate">
+        <label for="email">Email address</label>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="password" id="password" type="text" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+
+  <div class="input-field col s12">
+    <select formControlName="role_id">
+      <option value="" selected>Choose your option</option>
+      <option *ngFor="let role of roles" value="{{ role.id }}">{{ role.name }}</option>
+    </select>
+    <label>Role</label>
+  </div>
+
+  <button [disabled]="!registerForm.valid" class="waves-effect waves-light btn" type="submit">
+    Register
+    <i class="material-icons right">send</i>
+  </button>
 </form>

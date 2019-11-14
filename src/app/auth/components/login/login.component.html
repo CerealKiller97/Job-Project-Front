@@ -1,25 +1,22 @@
 <h3 class="center-align"> Login</h3>
 
-<ng-template ngIf="error !== null">
-  {{ error }}
+<!--<div class="preloader-wrapper big active">-->
+<!--  <div class="spinner-layer spinner-blue-only">-->
+<!--    <div class="circle-clipper left">-->
+<!--      <div class="circle"></div>-->
+<!--    </div><div class="gap-patch">-->
+<!--    <div class="circle"></div>-->
+<!--  </div><div class="circle-clipper right">-->
+<!--    <div class="circle"></div>-->
+<!--  </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<ng-template *ngIf="showSpinner">
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
 </ng-template>
-
-<div class="preloader-wrapper big active">
-  <div class="spinner-layer spinner-blue-only">
-    <div class="circle-clipper left">
-      <div class="circle"></div>
-    </div><div class="gap-patch">
-    <div class="circle"></div>
-  </div><div class="circle-clipper right">
-    <div class="circle"></div>
-  </div>
-  </div>
-</div>
-
-<div class="progress">
-  <div class="indeterminate"></div>
-</div>
-
 
 
 <form class="col s12" [formGroup]="loginForm" (ngSubmit)="login()">
