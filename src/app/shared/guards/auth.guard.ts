@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
-  CanActivate,
+  CanActivate, CanActivateChild,
   Router,
   RouterStateSnapshot,
   UrlTree
@@ -12,11 +12,20 @@ import { AuthService } from "../services/auth.service";
 @Injectable({
   providedIn: "root"
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router
   ) {}
+
+  private activate(): boolean {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate(["/auth/login"]);
+      return false;
+    }
+
+    return true;
+  }
 
   public canActivate(
     next: ActivatedRouteSnapshot,
@@ -26,11 +35,10 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (!this.authService.isAuthenticated()) {
-      this.router.navigate(["/auth/login"]);
-      return false;
-    }
+    return this.activate();
+  }
 
-    return true;
+  public canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.activate();
   }
 }

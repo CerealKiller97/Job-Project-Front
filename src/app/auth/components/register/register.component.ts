@@ -1,18 +1,19 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { Subscription } from "rxjs";
 import { IRegisterUser } from "src/app/shared/models/User.model";
 import { AuthService } from "src/app/shared/services/auth.service";
 import { IGetRole, RolesService } from "src/app/shared/services/roles.service";
+import {Title} from "@angular/platform-browser";
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  private subscriptions: Subscription[] = null;
+  private subscriptions: Array<Subscription> = new Array<Subscription>();
   public roles: IGetRole[] = [];
 
   public readonly registerForm: FormGroup = new FormGroup({
@@ -29,22 +30,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly rolesService: RolesService,
-    private readonly router: Router
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly titleService: Title
   ) {}
 
   ngOnInit() {
-    this.subscriptions.push(
-      this.rolesService.getRoles().subscribe(
-        (roles: IGetRole[]) => {
-          console.log(roles);
-          this.roles = roles;
-        },
-        (error: HttpErrorResponse) => {
-          console.error(error);
-        }
-      )
-    );
+    this.roles = this.route.snapshot.data['roles'];
+    this.titleService.setTitle('Softwarehaus | Register');
   }
 
   public register(): void {

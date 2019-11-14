@@ -9,6 +9,7 @@ import {
 } from "src/app/shared/models/User.model";
 import { AuthService } from "src/app/shared/services/auth.service";
 import { IGetRole } from "src/app/shared/services/roles.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: "app-login",
@@ -30,18 +31,23 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly titleService: Title
   ) {}
 
-  public ngOnInit() {}
+  public ngOnInit() {
+    this.titleService.setTitle('Softwarehaus | Login');
+  }
 
-  public login() {
+  public login(): void {
     if (this.loginForm.valid) {
       const credentials: LoginCredentials = this.loginForm.getRawValue();
       this.subscriptions.push(
         this.authService.login(credentials).subscribe(
           (res: LoginResponse) => {
-            console.log(res);
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('user', JSON.stringify(res.user));
+            this.router.navigate(['/']);
           },
           (error: HttpErrorResponse) => {
             console.log(error);

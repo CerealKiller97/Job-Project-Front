@@ -35,6 +35,6 @@ export class AuthService {
   }
 
   public logout(): Observable<string> {
-    return this.http.post<string>("/logout", undefined);
+    return this.http.post<string>("/auth/logout", undefined);
   }
 }

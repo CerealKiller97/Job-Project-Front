@@ -2,5 +2,5 @@ import { IEnvironment } from "./environment.interface";
 
 export const environment: IEnvironment = {
   production: true,
-  apiUrl: ""
+  apiUrl: "http://localhost/job-project/public/api"
 };

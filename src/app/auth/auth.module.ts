@@ -7,14 +7,19 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
+import {LoginRedirectGuard} from "../shared/guards/login-redirect.guard";
+import { LogoutComponent } from './components/logout/logout.component';
+import {AuthGuard} from "../shared/guards/auth.guard";
+import {RolesResolverService} from "./resolvers/roles-resolver.service";
 
 const routes: Route[] = [
   {
     path: "",
     component: AuthLayoutComponent,
     children: [
-      { path: "login", component: LoginComponent },
-      { path: "register", component: RegisterComponent }
+      { path: "login", component: LoginComponent, canActivateChild: [LoginRedirectGuard] },
+      { path: "register", component: RegisterComponent, canActivateChild: [LoginRedirectGuard], resolve: { roles: RolesResolverService } },
+      { path: "logout", component: LogoutComponent, canActivateChild: [AuthGuard] }
     ]
   }
 ];
@@ -25,7 +30,8 @@ const routes: Route[] = [
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
