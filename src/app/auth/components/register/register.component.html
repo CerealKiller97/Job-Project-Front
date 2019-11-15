@@ -1,12 +1,11 @@
 <h6 class="center-align">Register</h6>
 
-<form class="col s12" [formGroup]="registerForm" (ngSubmit)="(register)">
-
-
+<form class="col s12" [formGroup]="registerForm" (ngSubmit)="register();">
   <div class="row">
     <div class="input-field col s12">
       <input formControlName="name" id="name" type="text" class="validate">
       <label for="name">Name</label>
+      <span *ngIf="!registerForm.get('name').valid && registerForm.get('name').touched" class="helper-text error-text" data-error="wrong">Name is required.</span>
     </div>
   </div>
 
@@ -14,23 +13,26 @@
       <div class="input-field col s12">
         <input formControlName="email" id="email" type="text" class="validate">
         <label for="email">Email address</label>
+        <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched" class="helper-text error-text" data-error="wrong">Email address is required.</span>
       </div>
     </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input formControlName="password" id="password" type="text" class="validate">
+          <input formControlName="password" id="password" type="password" class="validate">
           <label for="password">Password</label>
+          <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched" class="helper-text error-text" data-error="wrong">Password is required.</span>
         </div>
       </div>
 
-  <div class="input-field col s12">
-    <select formControlName="role_id">
-      <option value="" selected>Choose your option</option>
-      <option *ngFor="let role of roles" value="{{ role.id }}">{{ role.name }}</option>
-    </select>
-    <label>Role</label>
-  </div>
+  <label>Browser Select</label>
+  <select formControlName="role_id" class="browser-default">
+    <option value="" disabled selected>Choose your option</option>
+    <option *ngFor="let role of roles" [value]="role.id">
+      {{ role.name }}
+    </option>
+    <span *ngIf="!registerForm.get('role_id').valid && registerForm.get('role_id').touched" class="helper-text error-text" data-error="wrong">Role is required.</span>
+  </select>
 
   <button [disabled]="!registerForm.valid" class="waves-effect waves-light btn" type="submit">
     Register

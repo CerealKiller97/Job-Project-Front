@@ -26,8 +26,8 @@ export class AuthService {
     return !jwtService.isTokenExpired(token);
   }
 
-  public register(register: IRegisterUser): Observable<string> {
-    return this.http.post<string>("/auth/register", register);
+  public register(register: IRegisterUser): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>("/auth/register", register);
   }
 
   public login(login: LoginCredentials): Observable<LoginResponse> {

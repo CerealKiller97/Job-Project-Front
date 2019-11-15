@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {IGetJob} from "../../../shared/models/Job.model";
 
 @Component({
   selector: 'app-job-list',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-list.component.scss']
 })
 export class JobListComponent implements OnInit {
-
-  constructor() { }
+  public jobs: IGetJob[] = [];
+  constructor(private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.jobs = this.route.snapshot.data['jobs']['data'];
   }
-
 }

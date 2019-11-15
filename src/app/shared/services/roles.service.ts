@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable} from "rxjs";
+import { map } from "rxjs/operators";
 
 export interface IGetRole {
   id: string;
@@ -11,9 +12,10 @@ export interface IGetRole {
   providedIn: "root"
 })
 export class RolesService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+  }
 
-  public getRoles(): Observable<IGetRole[]> {
-    return this.http.get<IGetRole[]>("/roles");
+  public getRoles(): Observable<any> {
+    return this.http.get<any>("/roles");
   }
 }

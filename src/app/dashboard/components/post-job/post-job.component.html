@@ -1,1 +1,33 @@
-<p>post-job works!</p>
+<h6 class="center-align">Register</h6>
+
+<form class="col s12" [formGroup]="jobForm" (ngSubmit)="postJob();">
+  <div class="row">
+    <div class="input-field col s12">
+      <input formControlName="title" id="title" type="text" class="validate">
+      <label for="title">Name</label>
+      <span *ngIf="!jobForm.get('title').valid && jobForm.get('title').touched" class="helper-text error-text" data-error="wrong">Title is required.</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <input formControlName="email" id="email" type="text" class="validate">
+      <label for="email">Email address</label>
+      <span *ngIf="!jobForm.get('email').valid && jobForm.get('email').touched" class="helper-text error-text" data-error="wrong">Email address is required.</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea formControlName="description" id="description" class="materialize-textarea"></textarea>
+      <label for="description">Description</label>
+      <span *ngIf="!jobForm.get('description').valid && jobForm.get('description').touched" class="helper-text error-text" data-error="wrong">Description is required.</span>
+
+    </div>
+  </div>
+
+  <button [disabled]="!jobForm.valid" class="waves-effect waves-light btn" type="submit">
+    Post a job
+    <i class="material-icons right">send</i>
+  </button>
+</form>
