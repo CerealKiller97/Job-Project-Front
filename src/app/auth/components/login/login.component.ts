@@ -10,6 +10,7 @@ import {
 import { AuthService } from "src/app/shared/services/auth.service";
 import { IGetRole } from "src/app/shared/services/roles.service";
 import { Title } from "@angular/platform-browser";
+// @ts-ignore
 import * as M from "materialize-css/dist/js/materialize";
 
 @Component({
@@ -20,7 +21,7 @@ import * as M from "materialize-css/dist/js/materialize";
 export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Array<Subscription> = [];
   public error: string = null;
-  public showSpinner: boolean = false;
+  public showSpinner = false;
 
   public readonly loginForm: FormGroup = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
-    this.titleService.setTitle('Softwarehaus | Login');
+    this.titleService.setTitle("Softwarehaus | Login");
   }
 
   public login(): void {
@@ -50,14 +51,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authService.login(credentials).subscribe(
           (res: LoginResponse) => {
             this.showSpinner = true;
-            localStorage.setItem('token', res.token);
-            localStorage.setItem('user', JSON.stringify(res.user));
+            localStorage.setItem("token", res.token);
+            localStorage.setItem("user", JSON.stringify(res.user));
 
             M.toast({ html: "Welcome back " + res.user.name, displayLength: 1750 });
 
             setTimeout(() => {
-              this.router.navigateByUrl('/dashboard');
-            }, 2500)
+              this.router.navigateByUrl("/dashboard");
+            }, 2500);
           },
           (error: HttpErrorResponse) => {
             this.error = error.error.message;

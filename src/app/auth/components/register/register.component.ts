@@ -7,6 +7,7 @@ import { IRegisterUser } from "src/app/shared/models/User.model";
 import { AuthService } from "src/app/shared/services/auth.service";
 import { IGetRole, RolesService } from "src/app/shared/services/roles.service";
 import { Title } from "@angular/platform-browser";
+// @ts-ignore
 import * as M from "materialize-css/dist/js/materialize";
 
 @Component({

@@ -27,3 +27,25 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 .error {
   background-color: var(--error) !important;
 }
+
+.error-text {
+  color: var(--error) !important;
+}
+
+.icons {
+  margin-left: 25px !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.page-footer {
+  background-color: var(--primary) !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  width: 100% !important;
+}
+
+nav {
+  background-color: #00b8d4 !important;
+}
+
