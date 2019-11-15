@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           ({ message }) => {
             this.registerForm.reset();
             // @ts-ignore
-            M.toast({ html: message, displayLength: 1750 });
+            M.toast({ html: message, classes: "success", displayLength: 1750 });
 
           },
           (error: HttpErrorResponse) => {
