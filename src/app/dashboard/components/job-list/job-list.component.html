@@ -1,4 +1,4 @@
-<ng-container *ngIf="jobs.length !== null"; elseBlock>
+<div class="wrapper" *ngIf="jobs.length !== 0; else noJobs">
   <div class="container">
     <div class="row">
       <div class="col l12">
@@ -7,9 +7,17 @@
       </div>
     </div>
   </div>
-</ng-container>
+</div>
 
 
 <ng-template #noJobs>
   <h1>No jobs posted!</h1>
 </ng-template>
+
+<!--<div *ngIf="jobs !== null; else loggedOut">-->
+<!--  Welcome back, friend.-->
+<!--</div>-->
+
+<!--<ng-template #loggedOut>-->
+<!--  Please friend, login.-->
+<!--</ng-template>-->

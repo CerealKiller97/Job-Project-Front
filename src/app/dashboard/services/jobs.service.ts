@@ -21,4 +21,8 @@ export class JobsService {
   public postJob(job: IPostJob): Observable<IGetJob> {
     return this.http.post<IGetJob>('/job-offers', job);
   }
+
+  public deleteJob(jobId: string): Observable<any> {
+    return this.http.delete(`/job-offers/${jobId}`);
+  }
 }

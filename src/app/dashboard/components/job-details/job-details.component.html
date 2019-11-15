@@ -1,1 +1,14 @@
-<p>job-details works!</p>
+<div class="container">
+  <h1 class="center-align">{{ job.title }}</h1>
+
+  <span>Description:</span>
+  <p>{{ job.description }}</p>
+  <span>Valid until:</span>
+  <p>{{ job.valid_until }}</p>
+  <br>
+    <button class="waves-effect waves-light btn mt-5" routerLink="/jobs">Go back</button>
+  <br>
+  <br>
+
+  <button class="waves-effect waves-light btn error" (click)="deleteJob(job.id)">Delete a job</button>
+</div>

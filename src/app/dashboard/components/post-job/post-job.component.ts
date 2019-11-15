@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {JobsService} from "../../services/jobs.service";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
-import {Observable, Subscription} from "rxjs";
-import {Title} from "@angular/platform-browser";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { JobsService } from "../../services/jobs.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Subscription} from "rxjs";
+import { Title } from "@angular/platform-browser";
+import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
 
 @Component({
   selector: 'app-post-job',
@@ -18,7 +19,7 @@ export class PostJobComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
-  constructor(private readonly jobsService: JobsService, private readonly titleService: Title) { }
+  constructor(private readonly route: ActivatedRoute,private readonly jobsService: JobsService, private readonly titleService: Title) { }
 
   ngOnInit() {
     this.titleService.setTitle('Softwarehaus | Post a job');

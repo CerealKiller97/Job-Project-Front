@@ -18,4 +18,8 @@ export class RolesService {
   public getRoles(): Observable<any> {
     return this.http.get<any>("/roles");
   }
+
+  public getModeratorEmails(): Observable<string[]> {
+    return this.http.get<string[]>('/moderator-emails');
+  }
 }

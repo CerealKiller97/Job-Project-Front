@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {JobsResolverService} from "./resolvers/jobs-resolver.service";
 import { JobCardComponent } from './components/job-card/job-card.component';
 import {JobDetailResolverService} from "./resolvers/job-detail-resolver.service";
+import {ModeratorEmailsResolverService} from "./resolvers/moderator-emails-resolver.service";
 
 const routes: Route[] = [
   {
@@ -17,7 +18,7 @@ const routes: Route[] = [
     component: DashboardLayoutComponent,
     children: [
       { path: "dashboard", component: DashboardComponent },
-      { path: "create-job", component: PostJobComponent },
+      { path: "create-job", component: PostJobComponent, resolve: { emails: ModeratorEmailsResolverService } },
       { path: "jobs", component: JobListComponent, resolve: { jobs: JobsResolverService } },
       { path: "job-details/:id", component: JobDetailsComponent, resolve: { job: JobDetailResolverService } }
     ],
