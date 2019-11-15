@@ -19,6 +19,6 @@ export class JobsService {
   }
 
   public postJob(job: IPostJob): Observable<IGetJob> {
-    return this.http.post('/job-offers', job);
+    return this.http.post<IGetJob>('/job-offers', job);
   }
 }
