@@ -1,10 +1,10 @@
-<h6 class="center-align">Register</h6>
+<h3 class="center-align">Post new job</h3>
 
 <form class="col s12" [formGroup]="jobForm" (ngSubmit)="postJob();">
   <div class="row">
     <div class="input-field col s12">
       <input formControlName="title" id="title" type="text" class="validate">
-      <label for="title">Name</label>
+      <label for="title">Title</label>
       <span *ngIf="!jobForm.get('title').valid && jobForm.get('title').touched" class="helper-text error-text" data-error="wrong">Title is required.</span>
     </div>
   </div>

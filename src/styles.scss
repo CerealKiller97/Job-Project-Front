@@ -3,6 +3,8 @@
 :root {
   --primary: #00b8d4;
   --error: #b71c1c;
+  --success:#00e676;
+  --warning: #fbc02d;
 }
 
 body {
@@ -28,8 +30,20 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
   background-color: var(--error) !important;
 }
 
+.primary {
+  background-color: var(--primary) !important;
+}
+
 .error-text {
   color: var(--error) !important;
+}
+
+.success {
+  background-color: var(--success) !important;
+}
+
+.warning {
+  background-color: var(--warning) !important;
 }
 
 .icons {
